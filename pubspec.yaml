@@ -1,7 +1,8 @@
 name: media_picker_view
-description: "A new Flutter package project."
-version: 0.0.1
-homepage:
+description: "A Flutter package for picking and previewing images and videos with thumbnail support."
+version: 0.1.0
+homepage: "https://github.com/riyaz-raz/media_picker_view"
+repository: "https://github.com/riyaz-raz/media_picker_view"
 
 environment:
   sdk: ^3.9.2
