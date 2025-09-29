@@ -22,4 +22,4 @@ After publishing your package to [pub.dev](https://pub.dev/packages/media_picker
 
 ```yaml
 dependencies:
-  media_picker_view: ^0.0.1
+  media_picker_view: ^0.1.0
