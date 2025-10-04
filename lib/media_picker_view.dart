@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:media_picker_view/repository/get_thumbnail_provider.dart';
+import 'package:media_picker_view/static/media_picker_type.dart';
+import 'package:media_picker_view/util/media_type_checker.dart';
+import 'package:media_picker_view/widget/empty_preview_widget.dart';
 
 /// A media preview widget that supports images & videos.
 class MediaPreviewList extends StatelessWidget {
   final List<XFile> files;
-  final bool Function(String path) isVideoFile;
   final void Function(int index) onRemove;
-  final Widget placeholder;
+  // final Widget placeholder;
+  final Function(XFile? file)? onSelect;
+  final Function(List<XFile>? files)? onMultiSelect;
+  final MediaPickerType mediaPickerType;
 
   /// Custom colors
   final Color loaderColor;
@@ -19,17 +24,21 @@ class MediaPreviewList extends StatelessWidget {
   const MediaPreviewList({
     super.key,
     required this.files,
-    required this.isVideoFile,
     required this.onRemove,
     this.loaderColor = Colors.orange,
     this.previewWidth = 150,
     this.previewHeight = 200,
-    this.placeholder = const SizedBox.shrink(),
+    this.onSelect,
+    this.onMultiSelect,
+    // this.placeholder = const EmptyPreviewWidget(),
+    this.mediaPickerType = MediaPickerType.media,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (files.isEmpty) return placeholder;
+    if (files.isEmpty) {
+      return EmptyPreviewWidget(mediaPickerType: mediaPickerType);
+    }
 
     return Container(
       padding: const EdgeInsets.all(16),
